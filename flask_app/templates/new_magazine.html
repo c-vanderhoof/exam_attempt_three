@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add A Magazine</title>
+</head>
+<body>
+    <div id="navbar">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div id="container">
+        <h1>Add a Magazine</h1>
+        {% with messages = get_flashed_messages(category_filter=['magazine']) %}
+                {% if messages %}
+                <div>
+                    <strong>ERROR</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+        <form action="/create_mag" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" name="title">
+            <label for="description">Description:</label>
+            <textarea name="description" cols="55" rows="9"></textarea>
+            <input type="submit" value="Add Magazine">
+        </form>
+
+    </div>
+</body>
+</html>

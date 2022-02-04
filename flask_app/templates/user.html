@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+</head>
+<body>
+    <div id="navbar">
+        <a href="/new">Add a Magazine</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div id="container">
+        <div id="left-container">
+            <h1>Update User</h1>
+            {% with messages = get_flashed_messages(category_filter=['register']) %}
+                {% if messages %}
+                <div>
+                    <strong>ERROR</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <form action="/update/user">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name" value="{{user.first_name}}">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" value="{{user.last_name}}">
+                <label for="email">Email</label>
+                <input type="text" name="email" value="{{user.email}}">
+                <input type="submit" value="Update">
+            </form>
+        </div>
+        <div id="right-container">
+            <h1>User's Magazines</h1>
+            <div id="mags">
+                {% for magazine in magazines %}
+                <p>{{magazine.title}} <a href="/delete/magazine/{{magazine.id}}">Delete</a></p>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>

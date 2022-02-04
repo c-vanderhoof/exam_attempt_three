@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div id="navbar">
+        <h1>Welcome {{this_user.first_name}} {{this_user.last_name}}!</h1>
+        <a href="/new">Add a Magazine</a>
+        <a href="/user/account">Account</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div id="content">
+        <h2>Magazines</h2>
+        <div id="magazines">
+            {% for magazine in mags %}
+            <p><a href="/show/{{magazine.id}}">{{magazine.title}}</a> added by {{magazine.User.first_name}} {{magazine.User.last_name}}.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
